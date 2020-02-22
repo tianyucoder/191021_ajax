@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ajax-get</title>
+</head>
+<body>
+  <h2>该页面是练习：使用原生js发送ajax-get请求</h2>
+  <button id="btn">点我使用原生js发送ajax-get请求</button>
+
+  <script type="text/javascript">
+
+    //获取按钮
+    let btn = document.getElementById('btn')
+    //点击事件
+    btn.onclick = ()=>{
+      //1.实例化一个XMLHttpRequest对象--------找来一个帮你“干活”的人
+      let xhr = new XMLHttpRequest()
+
+      //2.绑定一个特殊的事件监听-------约定好如果“活干完了”，如何把工作的结果交给你。
+      //今天暂时不获取服务给的数据
+
+      //3.指定：发送请求的方式？给谁发请求？带着什么参数？(暂时不带)--------指明这个人的任务
+      xhr.open('get','http://localhost:3000/demo')
+
+      //4.下发“干活”的命令
+      xhr.send()
+    }
+
+
+  </script>
+
+</body>
+</html>
