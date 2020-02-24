@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>三级联动</title>
+</head>
+<body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+省：<select id="province">
+  <option value="">请选择省份</option>
+</select>
+
+市：<select id="city">
+  <option value="">请选择市</option>
+</select>
+
+区/县：<select id="county">
+  <option value="">请选择区/县</option>
+</select>
+
+<script type="text/javascript">
+
+  let $province = $('#province')
+  let $city = $('#city')
+  let $county= $('#county')
+
+  $(()=>{
+    $.get('http://localhost:5000/get_all_province',{},(result)=>{
+      const {status,data} = result
+      let html = ''
+      data.forEach((provinceObj)=>{
+        html += `<option value="${provinceObj.province}">${provinceObj.name}</option>`
+      })
+      $province.append(html)
+    })
+  })
+
+</script>
+
+
+</body>
+</html>

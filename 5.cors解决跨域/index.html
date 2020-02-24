@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>cors解决跨域演示</title>
+</head>
+<body>
+<button id="btn">点我获取数据</button>
+<script type="text/javascript">
+
+  let btn = document.getElementById('btn')
+  btn.onclick = ()=>{
+    //1.实例xhr
+    let xhr = new XMLHttpRequest()
+    //2.绑定监听
+    xhr.onreadystatechange = ()=>{
+      if(xhr.readyState === 4 && xhr.status === 200){
+        console.log(xhr.response)
+      }
+    }
+    //3.指定：方式、地址、参数
+    xhr.open('get','http://localhost:3000/demo?name=laoliu&age=18')
+    //4.发送请求
+    xhr.send()
+  }
+
+
+</script>
+
+</body>
+</html>
