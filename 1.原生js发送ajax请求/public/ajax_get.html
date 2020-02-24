@@ -17,6 +17,7 @@
       //1.实例化一个XMLHttpRequest对象--------找来一个帮你“干活”的人
       let xhr = new XMLHttpRequest()
 
+      //2.绑定监听
       xhr.onreadystatechange = ()=>{ //xhr内部有多种状态，随着请求状态会进行不断的切换，每次状态改变的时候都会调用这个回调函数
         /*
         *  xhr内部有5中状态，分别是：0、1、2、3、4。

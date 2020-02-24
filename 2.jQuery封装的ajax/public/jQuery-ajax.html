@@ -48,13 +48,13 @@
     //jQuery封装的post请求，默认将参数以urlencoded编码
 
     //1.使用jQuery发送post请求----完整版写法
-   /* $.ajax({
+    $.ajax({
       url:'http://localhost:3000/demo2',
       method:'POST',
       data:{name:'会开车的老刘',age:18},
       success:(result)=>{console.log(result)}, //请求成功的回调
       error:(err)=>{console.log(err)} //请求失败的回调
-    })*/
+    })
 
     //2.使用jQuery发送post请求----完整版写法
     /*$.post('http://localhost:3000/demo2',{name:'会开车的老刘',age:18},(data)=>{
