@@ -10,11 +10,12 @@ app.use(express.urlencoded({extended:true}))
 
 //配置路由
 app.get('/demo',(request,response)=>{
+  //从query参数中获取回调函数的名字
   const {callback} = request.query
+  //准备好一些要返回的数据
   let cars = [{name:'马自达阿特兹',price:200000},{name:'奔驰c63-AMG',price:600000}]
-  //console.log(`demo(${cars})`)
+  //注意如下的写法，为了避免对象变成[object,Object]，所以要转为JSON字符串
   response.send(`${callback}(${JSON.stringify(cars)})`)
-  //demo([{name:'马自达阿特兹',price:200000},{name:'奔驰c63-AMG',price:600000}])
 })
 
 
