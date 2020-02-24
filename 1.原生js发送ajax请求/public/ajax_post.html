@@ -28,13 +28,14 @@
       * 关于post请求携带参数问题：
       *     1.post请求是有请求体的，一般来说，我们会把参数放在请求体中，几乎不会放在请求地址中。
       *     2.post请求，请求体中携带的参数有两种编码格式，分别为：urlencoded、json。
-      *     3.post请求要携带的参数，代码上的体现是放在了send方法中
+      *     3.post请求携带参数在代码上的体现是放在了send方法中。
+      *     4.form表单发post请求会自动将表单内容转为urlencoded编码，且加上了相应请求头。
       * */
 
       //第一种方式：post请求请求体中的参数以urlencoded形式进行编码。
       /*//3.指定发送请求的：方式、地址、参数
       xhr.open('post','http://localhost:3000/demo2')
-      //post请求如果携带的是urlencoded形式的编码，就必须加上一个请求头，用于告诉服务器你用的urlencoded
+      //post请求如果携带的是urlencoded形式的编码，就必须加上一个请求头，用于告诉服务器你用的urlencoded编码
       xhr.setRequestHeader('content-type','application/x-www-form-urlencoded')
       //4.下发“干活”的命令
       xhr.send('name=laoliu&age=18')*/
@@ -42,11 +43,11 @@
       //第二种方式：post请求请求体中的参数以json形式进行编码。
       /*//3.指定发送请求的：方式、地址、参数
       xhr.open('post','http://localhost:3000/demo2')
-      //post请求如果携带的是json形式的编码，就必须加上一个请求头，用于告诉服务器你用的json
+      //post请求如果携带的是json形式的编码，就必须加上一个请求头，用于告诉服务器你用的json编码
       xhr.setRequestHeader('content-type','application/json')
       //4.下发“干活”的命令
       let p = {name:'laoliu',age:18}
-      xhr.send(JSON.stringify(p)*/)
+      xhr.send(JSON.stringify(p))*/
     }
 
 

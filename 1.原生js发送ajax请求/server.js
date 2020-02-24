@@ -31,5 +31,6 @@ app.listen(3000,(err)=>{
     console.log('兄弟不要用编译器打开页面')
     console.log('练习原生js发送ajax-get请求的地址是：http://localhost:3000/ajax_get.html')
     console.log('练习原生js发送ajax-post请求的地址是：http://localhost:3000/ajax_post.html')
+    console.log('练习原生xhr的abort方法的地址是：http://localhost:3000/xhr_abort.html')
   }
 })
