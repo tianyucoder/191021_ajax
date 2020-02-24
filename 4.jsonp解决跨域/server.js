@@ -10,7 +10,11 @@ app.use(express.urlencoded({extended:true}))
 
 //配置路由
 app.get('/demo',(request,response)=>{
-  response.send('ok')
+  const {callback} = request.query
+  let cars = [{name:'马自达阿特兹',price:200000},{name:'奔驰c63-AMG',price:600000}]
+  //console.log(`demo(${cars})`)
+  response.send(`${callback}(${JSON.stringify(cars)})`)
+  //demo([{name:'马自达阿特兹',price:200000},{name:'奔驰c63-AMG',price:600000}])
 })
 
 

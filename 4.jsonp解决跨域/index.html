@@ -5,11 +5,36 @@
   <title>jsonp解决跨域</title>
 </head>
 <body>
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-
+<button id="btn">点我获取数据</button>
 <script type="text/javascript">
-  console.log($)
+  /*
+  * jsonp解决跨域
+  *   1.借助了标签发送get请求不受同源策略的限制
+  *   2.“套路”
+  *       1.准备好一个等待调用的函数。
+  *       2.创建一个script标签。
+  *       3.为script标签指定src属性，src的值即为你要请求的地址
+  *       4.script标签放入body中
+  *   3.不足之处：
+  *       1.需要后端人员进行配合。
+  *       2.只能解决get请求跨域问题。
+  *   4.其实就是借助标签发送请求，绕开了ajax引擎，从而不受到同源策略的限制
+  * */
+  let btn = document.getElementById('btn')
+  btn.onclick = ()=>{
+    window.haha = (a)=>{
+      console.log(a)
+    }
+    //1.创建script标签
+    let scriptNode = document.createElement('script')
+    //2.指定src属性
+    scriptNode.src = 'http://localhost:3000/demo?callback=haha'
+    //3.将script节点放入页面
+    document.body.appendChild(scriptNode)
+  }
+
 </script>
+
 
 </body>
 </html>
