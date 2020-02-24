@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>演示iframe的问题</title>
+</head>
+<body>
+<iframe id="baidu" style="width: 600px; height: 600px" src="https://www.baidu.com"></iframe>
+
+<script type="text/javascript">
+  const iframe = window.frames['baidu']
+  console.log(iframe)
+</script>
+</body>
+</html>
