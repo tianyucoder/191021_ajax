@@ -4,6 +4,12 @@ const express = require('express')
 const app = express()
 //使用中间件暴露静态资源
 app.use(express.static(__dirname+'/public'))
+//使用express内置的中间件,用于解析请求体中以urlencoded形式编码的参数。
+//解析的结果为一个对象，随后把解析完的这个对象挂载到了request对象的body属性上。
+app.use(express.urlencoded({extended:true}))
+//使用express内置的中间件,用于解析请求体中以json形式编码的参数。
+//解析的结果为一个对象，随后把解析完的这个对象挂载到了request对象的body属性上。
+app.use(express.json())
 
 
 //配置路由
@@ -13,10 +19,17 @@ app.get('/demo',(request,response)=>{
   response.send(cars)
 })
 
+app.post('/demo2',(request,response)=>{
+  console.log('有人发来了post请求了，携带的参数是：',request.body)
+  let films = [{name:'囧妈',starts:4.5},{name:'中国女排',starts:5.0}]
+  response.send(films)
+})
+
 //绑定端口监听
 app.listen(3000,(err)=>{
   if(!err){
     console.log('兄弟不要用编译器打开页面')
-    console.log('练习原生js发送get请求的地址是：http://localhost:3000/ajax_get.html')
+    console.log('练习原生js发送ajax-get请求的地址是：http://localhost:3000/ajax_get.html')
+    console.log('练习原生js发送ajax-post请求的地址是：http://localhost:3000/ajax_post.html')
   }
 })

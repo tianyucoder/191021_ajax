@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ajax-post</title>
+</head>
+<body>
+  <h2>该页面是练习：使用原生js发送ajax-post请求</h2>
+  <button id="btn">点我使用原生js发送ajax-post请求</button>
+
+  <script type="text/javascript">
+
+    //获取按钮
+    let btn = document.getElementById('btn')
+    //点击事件
+    btn.onclick = ()=>{
+      //1.实例化一个XMLHttpRequest对象
+      let xhr = new XMLHttpRequest()
+
+      //2.绑定监听
+      xhr.onreadystatechange = ()=>{
+        if(xhr.readyState === 4 && xhr.status === 200){
+          console.log(JSON.parse(xhr.response))
+        }
+      }
+
+      /*
+      * 关于post请求携带参数问题：
+      *     1.post请求是有请求体的，一般来说，我们会把参数放在请求体中，几乎不会放在请求地址中。
+      *     2.post请求，请求体中携带的参数有两种编码格式，分别为：urlencoded、json。
+      *     3.post请求要携带的参数，代码上的体现是放在了send方法中
+      * */
+
+      //第一种方式：post请求请求体中的参数以urlencoded形式进行编码。
+      /*//3.指定发送请求的：方式、地址、参数
+      xhr.open('post','http://localhost:3000/demo2')
+      //post请求如果携带的是urlencoded形式的编码，就必须加上一个请求头，用于告诉服务器你用的urlencoded
+      xhr.setRequestHeader('content-type','application/x-www-form-urlencoded')
+      //4.下发“干活”的命令
+      xhr.send('name=laoliu&age=18')*/
+
+      //第二种方式：post请求请求体中的参数以json形式进行编码。
+      /*//3.指定发送请求的：方式、地址、参数
+      xhr.open('post','http://localhost:3000/demo2')
+      //post请求如果携带的是json形式的编码，就必须加上一个请求头，用于告诉服务器你用的json
+      xhr.setRequestHeader('content-type','application/json')
+      //4.下发“干活”的命令
+      let p = {name:'laoliu',age:18}
+      xhr.send(JSON.stringify(p)*/)
+    }
+
+
+  </script>
+
+</body>
+</html>
