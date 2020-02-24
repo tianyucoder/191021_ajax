@@ -8,8 +8,9 @@ app.use(express.static(__dirname+'/public'))
 
 //配置路由
 app.get('/demo',(request,response)=>{
-  console.log('有人发来了get请求，我收到了')
-  response.send('ok')
+  console.log('有人发来了get请求了，携带的参数是：',request.query)
+  let cars = [{name:'马自达阿特兹',price:200000},{name:'奔驰c63-AMG',price:600000}]
+  response.send(cars)
 })
 
 //绑定端口监听
