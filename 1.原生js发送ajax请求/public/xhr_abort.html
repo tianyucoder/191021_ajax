@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>xhr-abort</title>
+</head>
+<body>
+  <h2>该页面是练习：xhr的abort方法</h2>
+  <button id="btn">点我发送请求(请求会被取消)</button>
+
+  <script type="text/javascript">
+
+    //获取按钮
+    let btn = document.getElementById('btn')
+    //点击事件
+    btn.onclick = ()=>{
+      let xhr = new XMLHttpRequest()
+
+      xhr.onreadystatechange = ()=>{
+        if(xhr.readyState === 4 && xhr.status === 200){
+          console.log(JSON.parse(xhr.response))
+        }
+      }
+
+      xhr.open('get','http://localhost:3000/demo?name=laoliu&age=18')
+
+      xhr.send()
+
+      setTimeout(()=>{
+        xhr.abort()
+      },1000)
+
+    }
+
+
+  </script>
+
+</body>
+</html>

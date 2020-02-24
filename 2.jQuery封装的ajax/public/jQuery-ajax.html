@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery-ajax</title>
+</head>
+<body>
+<h2>该页面是测试jQuery封装的ajax</h2>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+<button id="btn1">点我使用jQuery发送ajax-get请求</button>
+<button id="btn2">点我使用jQuery发送ajax-post请求</button>
+
+<script type="text/javascript">
+
+  let btn1 = $('#btn1')
+  let btn2 = $('#btn2')
+
+  //发送get请求
+  btn1.click(()=>{
+    /*
+    * 使用jQuery发送ajax请求的几个重要配置
+    *   url    ：发送请求的地址
+    *   method ：发送请求的方式
+    *   data   ：携带的参数（对象）
+    *   success：成功的回调
+    *   error  ： 失败的回调
+    * */
+
+    //1.使用jQuery发送get请求----完整版写法
+    $.ajax({
+      url:'http://localhost:3000/demo',
+      method:'GET',
+      data:{name:'会开车的老刘',age:18},
+      success:(result)=>{console.log(result)}, //请求成功的回调
+      error:(err)=>{console.log(err)} //请求失败的回调
+    })
+
+    //2.使用jQuery发送get请求----精简版写法
+    /*$.get('http://localhost:3000/demo',{name:'老刘',age:18},(data)=>{
+      console.log(data)
+    })*/
+
+  })
+
+  //发送post请求
+  btn2.click(()=>{
+    //jQuery封装的post请求，默认将参数以urlencoded编码
+
+    //1.使用jQuery发送post请求----完整版写法
+   /* $.ajax({
+      url:'http://localhost:3000/demo2',
+      method:'POST',
+      data:{name:'会开车的老刘',age:18},
+      success:(result)=>{console.log(result)}, //请求成功的回调
+      error:(err)=>{console.log(err)} //请求失败的回调
+    })*/
+
+    //2.使用jQuery发送post请求----完整版写法
+    /*$.post('http://localhost:3000/demo2',{name:'会开车的老刘',age:18},(data)=>{
+      console.log(data)
+    })*/
+
+  })
+
+  //演示回调地狱
+  /*$.ajax({
+    url:'http://localhost:3000/demo2',
+    method:'POST',
+    data:{name:'会开车的老刘',age:18},
+    success:(result)=>{
+      $.ajax({
+        url:'http://localhost:3000/demo2',
+        method:'POST',
+        data:{name:'会开车的老刘',age:18},
+        success:(result)=>{
+          $.ajax({
+            url:'http://localhost:3000/demo2',
+            method:'POST',
+            data:{name:'会开车的老刘',age:18},
+            success:(result)=>{console.log(result)}, //请求成功的回调
+            error:(err)=>{console.log(err)} //请求失败的回调
+          })
+        }, //请求成功的回调
+        error:(err)=>{console.log(err)} //请求失败的回调
+      })
+    }, //请求成功的回调
+    error:(err)=>{console.log(err)} //请求失败的回调
+  })*/
+
+</script>
+</body>
+</html>
