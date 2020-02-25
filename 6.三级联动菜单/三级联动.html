@@ -21,20 +21,70 @@
 
 <script type="text/javascript">
 
-  let $province = $('#province')
+  let $province = $('#province') //获取jQuery对象
   let $city = $('#city')
   let $county= $('#county')
 
   $(()=>{
+    //一上来就请求全国所有的省份信息
     $.get('http://localhost:5000/get_all_province',{},(result)=>{
       const {status,data} = result
+      if(!status) {
+        alert('数据不存在')
+        return
+      }
       let html = ''
       data.forEach((provinceObj)=>{
         html += `<option value="${provinceObj.province}">${provinceObj.name}</option>`
       })
       $province.append(html)
     })
+
+    //当用户所选择的省发生变化的时候，就去请求该省份所有的市信息
+    $province.change(()=>{
+      //1.清空城市选择框
+      $city.html('<option value="">请选择市</option>')
+      $county.html('<option value="">请选择市区/县</option>')
+      //2.获取用户所选择的省份编码
+      let province = $province.val()
+      //3.校验数据
+      if(!province) return
+      //4.发送请求
+      $.get('http://localhost:5000/get_cities_by_province',{province},(result)=>{
+          const {status,data} = result
+          if(!status){
+            alert('数据不存在')
+            return
+          }
+          let html = ''
+          data.forEach((item)=>{
+            html += `<option value="${item.city}">${item.name}</option>`
+          })
+          $city.append(html)
+      })
+    })
+
+    //当用户所选择的城市发生变化的时候，就去请求该城市所有的区县信息
+    $city.change(()=>{
+      let province = $province.val()
+      let city = $city.val()
+      $county.html('<option value="">请选择区/县</option>')
+      if(!city) return
+      $.get('http://localhost:5000/get_counties_by_province_and_city',{province,city},(result)=>{
+        const {status,data} = result
+        if(!status){
+          alert('数据不存在')
+          return
+        }
+        let html = ''
+        data.forEach((item)=>{
+          html += `<option value="${item.code}">${item.name}</option>`
+        })
+        $county.append(html)
+      })
+    })
   })
+
 
 </script>
 
