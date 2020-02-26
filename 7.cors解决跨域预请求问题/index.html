@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>cors解决跨域预请求问题</title>
+</head>
+<body>
+<button id="btn1">点我发送get请求</button>
+<button id="btn2">点我发送post请求</button>
+
+<script type="text/javascript">
+
+  let btn1 = document.getElementById('btn1')
+  let btn2 = document.getElementById('btn2')
+
+  btn1.onclick = ()=>{
+    let xhr = new XMLHttpRequest()
+    xhr.onreadystatechange = ()=>{
+      if(xhr.readyState === 4 && xhr.status === 200){
+        console.log(xhr.response)
+      }
+    }
+    xhr.open('get','http://localhost:3000/demo?name=laoliu&age=18')
+    xhr.send()
+  }
+
+  btn2.onclick = ()=>{
+    let xhr = new XMLHttpRequest()
+    xhr.onreadystatechange = ()=>{
+      if(xhr.readyState === 4 && xhr.status === 200){
+        console.log(xhr.response)
+      }
+    }
+    xhr.open('post','http://localhost:3000/demo2')
+    xhr.setRequestHeader('content-type','application/json')
+    let p = {name:'laoliu',age:18}
+    xhr.send(JSON.stringify(p))
+  }
+
+</script>
+
+</body>
+</html>
